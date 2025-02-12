@@ -3,11 +3,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Course} from "../model/course";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import moment from 'moment';
-import {CoursesService} from "../services/courses.service";
 import {LoadingService} from "../loading/loading.service";
 import {MessagesService} from "../messages/messages.service";
-import {catchError} from "rxjs/operators";
-import {throwError} from "rxjs";
+import {CoursesStore} from "../services/courses.store";
 
 @Component({
   selector: 'course-dialog',
@@ -26,9 +24,7 @@ export class CourseDialogComponent implements AfterViewInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) course: Course,
-    private coursesService: CoursesService,
-    private loadingService: LoadingService,
-    private messagesService: MessagesService) {
+    private coursesStore: CoursesStore) {
 
     this.course = course;
 
@@ -45,21 +41,9 @@ export class CourseDialogComponent implements AfterViewInit {
   }
 
   save() {
-
     const changes = this.form.value;
-
-    const saveCourse$ = this.coursesService.saveCourse$(this.course.id, changes).pipe(
-      catchError(error => {
-        const message = 'Could not save course';
-        console.log(message, error);
-        this.messagesService.showErrors(message);
-        return throwError(error);
-      })
-    );
-    this.loadingService.showLoaderUtilCompleted$(saveCourse$).subscribe(
-      (value) => this.dialogRef.close(value)
-    );
-
+    this.coursesStore.saveCourse$(this.course.id, changes).subscribe();
+    this.dialogRef.close(changes);
   }
 
   close() {
