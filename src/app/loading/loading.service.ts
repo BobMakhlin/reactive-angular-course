@@ -8,6 +8,10 @@ export class LoadingService {
   // No way to emit via Observable, only subscribing.
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
+  constructor() {
+    console.log('loading service created');
+  }
+
   showLoaderUtilCompleted$<T>(obs$: Observable<T>): Observable<T> {
     return of(null).pipe(
       tap(() => this.start()),

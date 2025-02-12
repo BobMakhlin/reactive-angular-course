@@ -10,7 +10,8 @@ import {LoadingService} from "../loading/loading.service";
   selector: 'course-dialog',
   templateUrl: './course-dialog.component.html',
   styleUrls: ['./course-dialog.component.css'],
-  standalone: false
+  standalone: false,
+  providers: [LoadingService]
 })
 export class CourseDialogComponent implements AfterViewInit {
 
@@ -22,7 +23,8 @@ export class CourseDialogComponent implements AfterViewInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) course: Course,
-    private coursesService: CoursesService) {
+    private coursesService: CoursesService,
+    private loadingService: LoadingService) {
 
     this.course = course;
 
@@ -36,13 +38,14 @@ export class CourseDialogComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-
   }
 
   save() {
 
     const changes = this.form.value;
-    this.coursesService.saveCourse$(this.course.id, changes).subscribe(
+
+    const saveCourse$ = this.coursesService.saveCourse$(this.course.id, changes);
+    this.loadingService.showLoaderUtilCompleted$(saveCourse$).subscribe(
       (value) => this.dialogRef.close(value)
     );
 
