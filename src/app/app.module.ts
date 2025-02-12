@@ -23,7 +23,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {CourseDialogComponent} from './course-dialog/course-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
@@ -32,43 +32,47 @@ import {LessonComponent} from './lesson/lesson.component';
 import {SafeUrlPipe} from './common/safe-url.pipe';
 import {MessagesComponent} from './messages/messages.component';
 import {SearchLessonsComponent} from './search-lessons/search-lessons.component';
-import { LoadingComponent } from './loading/loading.component';
+import {LoadingComponent} from './loading/loading.component';
+import {CoursesCardListComponent} from "./courses-card-list/courses-card-list/courses-card-list.component";
 
-@NgModule({ declarations: [
-        AppComponent,
-        HomeComponent,
-        AboutComponent,
-        CourseComponent,
-        CourseDialogComponent,
-        LoginComponent,
-        LessonComponent,
-        SafeUrlPipe,
-        MessagesComponent,
-        SearchLessonsComponent,
-        LoadingComponent
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatIconModule,
-        MatCardModule,
-        MatTabsModule,
-        MatSidenavModule,
-        MatListModule,
-        MatToolbarModule,
-        MatInputModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatProgressSpinnerModule,
-        MatDialogModule,
-        AppRoutingModule,
-        MatSelectModule,
-        MatDatepickerModule,
-        MatMomentDateModule,
-        ReactiveFormsModule], providers: [
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AboutComponent,
+    CourseComponent,
+    CourseDialogComponent,
+    LoginComponent,
+    LessonComponent,
+    SafeUrlPipe,
+    MessagesComponent,
+    SearchLessonsComponent,
+    LoadingComponent,
+    CoursesCardListComponent
+  ],
+  bootstrap: [AppComponent], imports: [BrowserModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    AppRoutingModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    ReactiveFormsModule], providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
 export class AppModule {
 }
