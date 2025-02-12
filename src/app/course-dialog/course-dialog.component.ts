@@ -4,6 +4,7 @@ import {Course} from "../model/course";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import moment from 'moment';
 import {CoursesService} from "../services/courses.service";
+import {LoadingService} from "../loading/loading.service";
 
 @Component({
   selector: 'course-dialog',

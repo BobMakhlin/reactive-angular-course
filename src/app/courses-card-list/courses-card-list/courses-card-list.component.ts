@@ -3,6 +3,7 @@ import {Course} from "../../model/course";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CourseDialogComponent} from "../../course-dialog/course-dialog.component";
 import {filter, tap} from "rxjs/operators";
+import {LoadingService} from "../../loading/loading.service";
 
 @Component({
   selector: 'courses-card-list',
@@ -18,6 +19,7 @@ export class CoursesCardListComponent {
   private coursesChanged = new EventEmitter();
 
   dialog = inject(MatDialog);
+  loadingService = inject(LoadingService);
 
   editCourse(course: Course) {
 
