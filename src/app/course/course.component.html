@@ -1,32 +1,25 @@
+<ng-container *ngIf="courseData$ | async as courseData">
 
   <div class="course">
 
-    <h2>{{course?.description}}</h2>
+    <h2>{{ courseData.course?.description }}</h2>
 
-    <img class="course-thumbnail" [src]="course?.iconUrl">
+    <img class="course-thumbnail" [src]="courseData.course?.iconUrl" *ngIf="courseData.course">
 
-    <table class="lessons-table mat-elevation-z7">
-
+    <table class="lessons-table mat-elevation-z7" *ngIf="courseData.lessons && courseData.lessons.length > 0">
       <thead>
       <th>#</th>
       <th>Description</th>
       <th>Duration</th>
       </thead>
 
-      <tr class="lesson-row" *ngFor="let lesson of lessons">
-        <td class="seqno-cell">{{lesson.seqNo}}</td>
-        <td class="description-cell">{{lesson.description}}</td>
-        <td class="duration-cell">{{lesson.duration}}</td>
+      <tr class="lesson-row" *ngFor="let lesson of courseData.lessons">
+        <td class="seqno-cell">{{ lesson.seqNo }}</td>
+        <td class="description-cell">{{ lesson.description }}</td>
+        <td class="duration-cell">{{ lesson.duration }}</td>
       </tr>
-
     </table>
 
   </div>
-
-
-
-
-
-
-
+</ng-container>
 
