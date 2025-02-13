@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Course} from '../model/course';
 import {combineLatest, concat, Observable, of} from 'rxjs';
@@ -16,7 +16,8 @@ interface CourseData {
   selector: 'course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css'],
-  standalone: false
+  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseComponent implements OnInit {
 
